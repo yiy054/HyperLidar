@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cenet-seg
+  labels:
+    k8s-app: cenet-seg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: cenet-seg
+  template:
+    metadata: 
+      labels:
+        k8s-app: cenet-seg
+    spec:
+      containers:
+      - name: cenet-seg-pod
+        image: ghcr.io/darthiv02/cenet_image:1.0
+        command: ["sleep", "infinity"]
+        volumeMounts:
+          - mountPath: /root/dataset
+            name: tls-data-ivannia
+          - mountPath: /root/dataset-5
+            name: tls-data-ivannia-5
+        resources:
+          limits:
+            nvidia.com/gpu: "1"
+            memory: "32G"
+            cpu: "1"
+          requests:
+             memory: "32G"
+             cpu: "1"
+      volumes:
+        - name: tls-data-ivannia
+          persistentVolumeClaim:
+            claimName: tls-data-ivannia
+        - name: tls-data-ivannia-5
+          persistentVolumeClaim:
+            claimName: tls-data-ivannia-5
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: nvidia.com/gpu.product
+                operator: In
+                values:
+                - NVIDIA-A10

@@ -1,0 +1,140 @@
+absl-py==0.13.0
+appdirs==1.4.4
+asgiref==3.4.1
+attrs==19.3.0
+awscli==1.18.69
+blinker==1.4
+botocore==1.16.19
+cached-property==1.5.1
+cachetools==4.2.2
+certifi==2019.11.28
+chardet==3.0.4
+Click==7.0
+# codegen==1.0
+colorama==0.4.3
+# Build wheel fail
+# cryptography==2.8
+# cupy-cuda112==9.4.0
+cycler==0.10.0
+Cython==0.29.24
+distro==1.4.0
+Django==3.2.5
+docker==4.1.0
+docker-compose==1.25.0
+dockerpty==0.4.1
+docopt==0.6.2
+entrypoints==0.3
+fastrlock==0.6
+filelock==3.13.1
+fsspec==2023.12.0
+google-auth==1.35.0
+google-auth-oauthlib==0.4.6
+# # grpcio==1.40.0
+gunicorn==20.1.0
+gviz-api==1.9.0
+h11==0.12.0
+# h5py==3.4.0
+httplib2==0.14.0
+httptools==0.2.0
+idna==2.8
+imageio==2.9.0
+importlib-metadata==1.5.0
+Jinja2==3.1.2
+jmespath==0.9.4
+joblib==1.0.1
+jsonschema==3.2.0
+keyring==18.0.1
+kiwisolver==1.3.2
+laspy==2.5.1
+launchpadlib==1.10.13
+lazr.restfulclient==0.14.2
+lazr.uri==1.0.3
+macaroonbakery==1.3.1
+Mako==1.1.5
+Markdown==3.3.4
+MarkupSafe==2.0.1
+matplotlib==3.4.3
+more-itertools==4.2.0
+mpmath==1.3.0
+networkx==2.6.3
+numpy==1.21.2
+oauthlib==3.1.0
+olefile==0.46
+# opencv-python==4.5.3.56
+packaging==23.2
+pandas==1.3.3
+pexpect==4.6.0
+Pillow==7.0.0
+# protobuf==3.6.1
+# pip install protobuf==3.20.3
+
+pyasn1==0.4.8
+#paramiko 3.5.1 requires pynacl>=1.5, but you have pynacl 1.3.0 which is incompatible.
+pyasn1-modules==0.2.8
+pydot==1.4.2
+Pygments==2.3.1
+pyimage==0.1.1
+pyinotify==0.9.6
+PyJWT==1.7.1
+pymacaroons==0.13.0
+PyNaCl==1.3.0
+# paramiko 3.5.1 requires pynacl>=1.5, but you have pynacl 1.3.0 which is incompatible.
+pyparsing==2.4.7
+pyRFC3339==1.1
+pyrsistent==0.15.5
+pytools==2021.2.8
+pytz==2019.3
+# Wheel fail PyWavelets
+PyWavelets==1.1.1
+pyxdg==0.26
+reportlab==3.5.34
+requests==2.22.0
+requests-oauthlib==1.3.0
+requests-unixsocket==0.2.0
+roman==2.0.0
+s3cmd==2.1.0
+s3transfer==0.3.3
+## scikit-image==0.18.3
+# scikit-learn==0.24.2
+# scipy==1.7.1
+SecretStorage==2.3.1
+simplejson==3.16.0
+six==1.14.0
+sklearn==0.0
+snakeviz==2.1.1
+sqlparse==0.4.2
+ssh-import-id==5.10
+sympy==1.12
+# tensorboard==2.6.0
+# pip install tensorboard==2.12.0
+tensorboard-data-server==0.6.1
+tensorboard-plugin-profile==2.5.0
+tensorboard-plugin-wit==1.8.0
+texttable==1.6.2
+threadpoolctl==2.2.0
+tifffile==2021.8.30
+torch-tb-profiler==0.2.1
+tornado==6.1
+tqdm==4.62.3
+# triton==2.1.0
+typing_extensions==4.8.0
+urllib3==1.25.8
+uvicorn==0.15.0
+uvloop==0.16.0
+wadllib==1.3.3
+watchgod==0.7
+websocket-client==0.53.0
+websockets==10.0
+Werkzeug==2.0.1
+whitenoise==5.3.0
+zipp==1.0.0
+torch-hd
+
+
+
+# ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+# onnx 1.16.0 requires protobuf>=3.20.2, but you have protobuf 3.6.1 which is incompatible.
+# readme-renderer 43.0 requires Pygments>=2.5.1, but you have pygments 2.3.1 which is incompatible.
+# rich 13.7.1 requires pygments<3.0.0,>=2.13.0, but you have pygments 2.3.1 which is incompatible.
+# twine 5.0.0 requires importlib-metadata>=3.6, but you have importlib-metadata 1.5.0 which is incompatible.
+# twine 5.0.0 requires urllib3>=1.26.0, but you have urllib3 1.25.8 which is incompatible.

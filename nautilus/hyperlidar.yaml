@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hyperlidar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hyperlidar
+  template:
+    metadata:
+      labels:
+        app: hyperlidar
+    spec:          
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - k8s-4090-01.calit2.optiputer.net
+
+      containers:  
+      - name: hyperlidar
+        image: ghcr.io/darthiv02/cenet_image:1.1
+        resources:
+          limits:
+            memory: "200G"
+            cpu: "2"
+            ephemeral-storage: "900Gi"
+            nvidia.com/gpu: 1
+          requests:
+            memory: "24G"
+            cpu: "2"
+            ephemeral-storage: "200Gi"
+            nvidia.com/gpu: 1
+        command: [
+          "sh", "-c", "sleep infinity" 
+          ]
+
+        volumeMounts:
+        - name: data
+          mountPath: /mnt/data
+        - mountPath: /root/main
+          name: temp-ivannia-volume
+        - mountPath: /dev/shm
+          name: cache-volume
+      
+
+      imagePullSecrets:
+      - name: regcred
+      volumes:                
+      - name: data
+        emptyDir: {}
+      - name: temp-ivannia-volume
+        persistentVolumeClaim:
+          claimName: temp-ivannia-volume
+      - emptyDir:
+          medium: Memory
+        name: cache-volume
+      tolerations:           
+      - key: "nautilus.io/arm64"
+        operator: "Exists"
+        effect: "NoSchedule"

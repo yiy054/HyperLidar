@@ -9,14 +9,22 @@ Code for our paper:
 
 ## HyperLiDAR System Overview (Three Stages)
 
-The full deployment pipeline of HyperLiDAR consists of three stages[cite: 135]:
+The full deployment pipeline of HyperLiDAR consists of three stages:
 
-1.  **Stage 1: Cloud Pre-training of Feature Extractor** (Off-device): A lightweight, generalized Feature Extractor (FE) is pretrained using large-scale data in the cloud and then frozen[cite: 136, 137].
-2.  **Stage 2: HyperLiDAR On-Device Adaptation** (Edge): Only the HDC class hypervectors are adapted/retrained on new, streaming LiDAR scans[cite: 102, 133]. [cite_start]This stage utilizes the **Buffer Selection Strategy** for efficiency[cite: 109].
-3.  **Stage 3: HyperLiDAR Inference** (Edge): New scans are processed through the frozen FE, encoded into a query hypervector, and classified using a simple similarity check against the trained class hypervectors[cite: 113, 128, 129].
+1.  **Stage 1: Cloud Pre-training of Feature Extractor** (Off-device): A lightweight, generalized Feature Extractor (FE) is pretrained using large-scale data in the cloud and then frozen.
+2.  **Stage 2: HyperLiDAR On-Device Adaptation** (Edge): Only the HDC class hypervectors are adapted/retrained on new, streaming LiDAR scans. This stage utilizes the **Buffer Selection Strategy** for efficiency.
+3.  **Stage 3: HyperLiDAR Inference** (Edge): New scans are processed through the frozen FE, encoded into a query hypervector, and classified using a simple similarity check against the trained class hypervectors.
 
 ## Dataset:
-Download SemanticKITTI from [official web](http://www.semantic-kitti.org/dataset.html). 
+**SemanticKITTI:** Download SemanticKITTI from [official web](http://www.semantic-kitti.org/dataset.html). 
+
+**Nusence:** Download Full Nusence from [official web](https://www.nuscenes.org/nuscenes). 
+ > ⚠️ Since our data loader is natively based on the SemanticKITTI format, you must first convert the nuScenes data:
+
+  - Conversion Tool: Use this tool to convert the nuScenes dataset to the SemanticKITTI format: [nuscenes2semantickitti](https://github.com/minghanz/nuscenes2semantickitti).
+
+  - YAML File: After conversion, use the corresponding .yaml file for data label configuration to ensure correct semantic mapping.
+
 
 ## Prepare:
 You can use the provided [Nautilus deployment YAML](./nautilus/hyperlidar.yaml) to launch the container environment.
@@ -48,7 +56,7 @@ OR
 ├── methods             // implementation of HyperLidar/pretrainmodel..
 ├── requirements.txt
 ├── dataset             // dataset loader
-├── kitti_pretrain       // pretrain model of semantickitti
+├── kitti_pretrain      // pretrain model of semantickitti
 └── config              // dataset and model config
 ```
 
@@ -60,12 +68,16 @@ OR
     python train.py 
       -d <dataset_path> 
       -ac config/arch/senet-512.yml 
+      -dc config/labels/<dataset_label.yaml>
       -l <save_dic> 
       -n senet-512 
       -p <pretrain_model_path> 
       -t <train_seqs>
     ```
     > **Note on Training Strategy:** For the pre-training, the model is first trained with 64x512 inputs. The pretrained model is then loaded for the subsequent Online learning phase on real-world sequences that have not been seen before. Current implementation focuses on the `senet-512` size.
+
+    SemanticKITTI used the `semantic-kitti.yaml`. 
+    Nusence used the `semantic-nuscenes_all_pretrain.yaml` 
 
 - **Stage 2: HyperLiDAR On-Device Adaptation:**
 
@@ -87,7 +99,7 @@ OR
   ```
 
 ## Pretrained Models and Logs:
-| **KITTI Result** | 
+| **KITTI Pretrain** | 
 | ---------------- | 
 | kitti_pretrain | 
 
@@ -97,5 +109,5 @@ Code framework derived from [CENET](https://github.com/huixiancheng/CENet.git).
 
 ## Citation：
 ~~~
-
+Comming soon. 
 ~~~
